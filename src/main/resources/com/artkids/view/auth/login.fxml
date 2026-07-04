@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.artkids.controller.auth.LoginController"
+            prefWidth="1280.0" prefHeight="820.0" styleClass="page login-page">
+    <left>
+        <VBox spacing="20.0" prefWidth="560.0" styleClass="login-hero">
+            <padding>
+                <Insets top="56.0" right="48.0" bottom="56.0" left="56.0"/>
+            </padding>
+            <Label text="ArtKids" styleClass="hero-title"/>
+            <Label text="Plateforme desktop de gestion et de reservation d'activites artistiques pour enfants."
+                   wrapText="true" styleClass="hero-subtitle"/>
+            <VBox spacing="14.0" styleClass="card hero-card">
+                <Label text="Deux espaces complementaires" styleClass="section-title"/>
+                <Label text="Front-Office Parent : enfants, activites, reservations." wrapText="true"/>
+                <Label text="Back-Office Admin : categories, activites, utilisateurs et suivi global." wrapText="true"/>
+            </VBox>
+            <VBox spacing="14.0" styleClass="card hero-card">
+                <Label text="Cette version fonctionne avec des donnees mockees en memoire." wrapText="true"/>
+                <Label text="L'integration REST Symfony sera ajoutee plus tard, sans connexion directe a MySQL." wrapText="true"/>
+            </VBox>
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" spacing="16.0">
+            <VBox spacing="18.0" maxWidth="420.0" styleClass="form-card login-card">
+                <padding>
+                    <Insets top="36.0" right="36.0" bottom="36.0" left="36.0"/>
+                </padding>
+                <Label text="Connexion" styleClass="page-title"/>
+                <Label text="Connectez-vous avec un compte parent ou administrateur." styleClass="page-subtitle" wrapText="true"/>
+
+                <VBox spacing="8.0">
+                    <Label text="Email" styleClass="form-label"/>
+                    <TextField fx:id="emailField" promptText="nom@artkids.com"/>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <Label text="Mot de passe" styleClass="form-label"/>
+                    <PasswordField fx:id="passwordField" promptText="Votre mot de passe" onAction="#handleLogin"/>
+                </VBox>
+
+                <Label fx:id="errorLabel" textFill="#B14A4A" wrapText="true"/>
+
+                <Button text="Se connecter" onAction="#handleLogin" maxWidth="Infinity" styleClass="primary-button"/>
+
+                <HBox spacing="10.0">
+                    <Button text="Compte admin" onAction="#fillAdminDemo" maxWidth="Infinity" styleClass="secondary-button" HBox.hgrow="ALWAYS"/>
+                    <Button text="Compte parent" onAction="#fillParentDemo" maxWidth="Infinity" styleClass="secondary-button" HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

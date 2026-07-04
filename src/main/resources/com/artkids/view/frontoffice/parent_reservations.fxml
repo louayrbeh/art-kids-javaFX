@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.artkids.controller.frontoffice.ParentReservationController"
+            prefWidth="1280.0" prefHeight="820.0" styleClass="page parent-page">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="appbar">
+            <padding>
+                <Insets top="16.0" right="24.0" bottom="16.0" left="24.0"/>
+            </padding>
+            <Label text="ArtKids Parent" styleClass="sidebar-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Dashboard" onAction="#goToDashboard" styleClass="secondary-button"/>
+            <Button text="Mes enfants" onAction="#goToChildren" styleClass="secondary-button"/>
+            <Button text="Activites" onAction="#goToActivities" styleClass="secondary-button"/>
+            <Button text="Deconnexion" onAction="#logout" styleClass="danger-button"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="18.0" styleClass="page-content">
+            <padding>
+                <Insets top="28.0" right="28.0" bottom="28.0" left="28.0"/>
+            </padding>
+            <VBox spacing="6.0">
+                <Label text="Mes reservations" styleClass="page-title"/>
+                <Label text="Consultez l'historique de vos inscriptions et annulez celles encore autorisees."
+                       styleClass="page-subtitle" wrapText="true"/>
+            </VBox>
+
+            <TableView fx:id="reservationsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="childColumn" text="Enfant" prefWidth="180.0"/>
+                    <TableColumn fx:id="activityColumn" text="Activite" prefWidth="220.0"/>
+                    <TableColumn fx:id="activityDateColumn" text="Date activite" prefWidth="140.0"/>
+                    <TableColumn fx:id="reservationDateColumn" text="Date reservation" prefWidth="180.0"/>
+                    <TableColumn fx:id="statusColumn" text="Statut" prefWidth="140.0"/>
+                    <TableColumn fx:id="actionColumn" text="Action" prefWidth="140.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

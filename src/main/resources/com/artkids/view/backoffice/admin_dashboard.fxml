@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.artkids.controller.backoffice.AdminDashboardController"
+            prefWidth="1360.0" prefHeight="860.0" styleClass="page admin-page">
+    <left>
+        <VBox spacing="12.0" prefWidth="260.0" styleClass="sidebar">
+            <padding>
+                <Insets top="24.0" right="18.0" bottom="24.0" left="18.0"/>
+            </padding>
+            <Label text="ArtKids Admin" styleClass="sidebar-title"/>
+            <Label text="Connecte :" styleClass="form-label"/>
+            <Label fx:id="currentAdminLabel" wrapText="true"/>
+            <Button text="Dashboard" onAction="#goToDashboard" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Categories" onAction="#goToCategories" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Activites" onAction="#goToActivities" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Utilisateurs" onAction="#goToUsers" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Enfants" onAction="#goToChildren" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Reservations" onAction="#goToReservations" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="Deconnexion" onAction="#logout" maxWidth="Infinity" styleClass="danger-button"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+                <VBox spacing="22.0" styleClass="page-content">
+                    <padding>
+                        <Insets top="28.0" right="28.0" bottom="28.0" left="28.0"/>
+                    </padding>
+                    <VBox spacing="6.0">
+                        <Label text="Dashboard administrateur" styleClass="page-title"/>
+                        <Label text="Pilotez le catalogue, les utilisateurs et les reservations depuis un espace centralise."
+                               styleClass="page-subtitle" wrapText="true"/>
+                    </VBox>
+
+                    <HBox spacing="16.0">
+                        <VBox spacing="6.0" styleClass="card stat-card" HBox.hgrow="ALWAYS">
+                            <Label text="Parents" styleClass="card-title"/>
+                            <Label fx:id="parentCountLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="card stat-card" HBox.hgrow="ALWAYS">
+                            <Label text="Enfants" styleClass="card-title"/>
+                            <Label fx:id="childCountLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="card stat-card" HBox.hgrow="ALWAYS">
+                            <Label text="Categories" styleClass="card-title"/>
+                            <Label fx:id="categoryCountLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="card stat-card" HBox.hgrow="ALWAYS">
+                            <Label text="Activites" styleClass="card-title"/>
+                            <Label fx:id="activityCountLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="card stat-card" HBox.hgrow="ALWAYS">
+                            <Label text="Reservations" styleClass="card-title"/>
+                            <Label fx:id="reservationCountLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="16.0">
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Dernieres reservations" styleClass="section-title"/>
+                            <ListView fx:id="recentReservationsList" prefHeight="260.0" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Activites recentes" styleClass="section-title"/>
+                            <ListView fx:id="recentActivitiesList" prefHeight="260.0" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

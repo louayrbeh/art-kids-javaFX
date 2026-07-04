@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.artkids.controller.backoffice.AdminChildController"
+            prefWidth="1360.0" prefHeight="860.0" styleClass="page admin-page">
+    <left>
+        <VBox spacing="12.0" prefWidth="260.0" styleClass="sidebar">
+            <padding>
+                <Insets top="24.0" right="18.0" bottom="24.0" left="18.0"/>
+            </padding>
+            <Label text="ArtKids Admin" styleClass="sidebar-title"/>
+            <Button text="Dashboard" onAction="#goToDashboard" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Categories" onAction="#goToCategories" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Activites" onAction="#goToActivities" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Utilisateurs" onAction="#goToUsers" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Enfants" disable="true" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Button text="Reservations" onAction="#goToReservations" maxWidth="Infinity" styleClass="sidebar-button"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="Deconnexion" onAction="#logout" maxWidth="Infinity" styleClass="danger-button"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox spacing="18.0" styleClass="page-content">
+            <padding>
+                <Insets top="28.0" right="28.0" bottom="28.0" left="28.0"/>
+            </padding>
+            <VBox spacing="6.0">
+                <Label text="Tous les enfants" styleClass="page-title"/>
+                <Label text="Vue lecture seule des enfants rattaches aux comptes parent."
+                       styleClass="page-subtitle" wrapText="true"/>
+            </VBox>
+
+            <TableView fx:id="childTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="fullNameColumn" text="Nom complet" prefWidth="220.0"/>
+                    <TableColumn fx:id="parentColumn" text="Parent associe" prefWidth="220.0"/>
+                    <TableColumn fx:id="birthDateColumn" text="Date naissance" prefWidth="150.0"/>
+                    <TableColumn fx:id="ageColumn" text="Age" prefWidth="100.0"/>
+                    <TableColumn fx:id="sexeColumn" text="Sexe" prefWidth="120.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
