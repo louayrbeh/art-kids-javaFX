@@ -24,6 +24,15 @@ public class UserService {
         return dataService.getUsers().stream().filter(user -> user.getId() == id).findFirst();
     }
 
+    public boolean emailExists(String email) {
+        if (ValidationUtils.isBlank(email)) {
+            return false;
+        }
+        String normalizedEmail = email.trim();
+        return dataService.getUsers().stream()
+                .anyMatch(existing -> existing.getEmail().equalsIgnoreCase(normalizedEmail));
+    }
+
     public User create(User user) {
         validate(user, true);
         LocalDateTime now = LocalDateTime.now();
@@ -32,6 +41,20 @@ public class UserService {
         user.setUpdatedAt(now);
         dataService.getUsers().add(user);
         return user;
+    }
+
+    public User createParentAccount(String nom, String prenom, String email, String telephone, String password) {
+        User user = new User();
+        user.setNom(nom == null ? null : nom.trim());
+        user.setPrenom(prenom == null ? null : prenom.trim());
+        user.setEmail(email == null ? null : email.trim());
+        user.setTelephone(ValidationUtils.isBlank(telephone) ? "" : telephone.trim());
+        user.setPassword(password);
+        user.setRole(UserRole.PARENT);
+        user.setActive(true);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+        return create(user);
     }
 
     public User update(User user) {
@@ -131,6 +154,9 @@ public class UserService {
         }
         if (creating) {
             ValidationUtils.validateRequired(user.getPassword(), "Mot de passe");
+        }
+        if (creating && user.getPassword().trim().length() < 6) {
+            throw new IllegalArgumentException("Le mot de passe doit contenir au moins 6 caracteres.");
         }
         boolean duplicate = dataService.getUsers().stream()
                 .anyMatch(existing -> existing.getId() != user.getId()

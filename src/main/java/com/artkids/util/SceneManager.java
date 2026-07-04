@@ -30,6 +30,10 @@ public final class SceneManager {
         switchScene("/com/artkids/view/auth/login.fxml", "ArtKids - Connexion", null);
     }
 
+    public void showRegister() {
+        switchScene("/com/artkids/view/auth/register.fxml", "ArtKids - Creer un compte parent", null);
+    }
+
     public void showParentDashboard() {
         switchScene("/com/artkids/view/frontoffice/parent_dashboard.fxml",
                 "ArtKids - Espace Parent", null);

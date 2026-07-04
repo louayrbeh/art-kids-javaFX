@@ -55,6 +55,7 @@
                 <Label fx:id="errorLabel" textFill="#B14A4A" wrapText="true"/>
 
                 <Button text="Se connecter" onAction="#handleLogin" maxWidth="Infinity" styleClass="primary-button"/>
+                <Button text="Creer un compte parent" onAction="#showRegister" maxWidth="Infinity" styleClass="secondary-button"/>
 
                 <HBox spacing="10.0">
                     <Button text="Compte admin" onAction="#fillAdminDemo" maxWidth="Infinity" styleClass="secondary-button" HBox.hgrow="ALWAYS"/>

@@ -62,4 +62,10 @@ public class LoginController {
         passwordField.setText("parent123");
         errorLabel.setText("");
     }
+
+    @FXML
+    private void showRegister() {
+        errorLabel.setText("");
+        SceneManager.getInstance().showRegister();
+    }
 }
