@@ -68,4 +68,10 @@ public class LoginController {
         errorLabel.setText("");
         SceneManager.getInstance().showRegister();
     }
+
+    @FXML
+    private void showHome() {
+        errorLabel.setText("");
+        SceneManager.getInstance().showHome();
+    }
 }

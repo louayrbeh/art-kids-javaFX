@@ -1,12 +1,18 @@
 package com.artkids.config;
 
 import com.artkids.model.User;
-import com.artkids.service.ActivityService;
+import com.artkids.service.AdminActivityApiService;
+import com.artkids.service.AdminCategoryApiService;
+import com.artkids.service.AdminChildApiService;
+import com.artkids.service.AdminReservationApiService;
+import com.artkids.service.AdminUserApiService;
 import com.artkids.service.ApiClient;
+import com.artkids.service.AuthApiService;
+import com.artkids.service.MockDataService;
+import com.artkids.service.ActivityService;
 import com.artkids.service.AuthService;
 import com.artkids.service.CategoryService;
 import com.artkids.service.ChildService;
-import com.artkids.service.MockDataService;
 import com.artkids.service.ReservationService;
 import com.artkids.service.UserService;
 
@@ -14,16 +20,20 @@ public final class AppConfig {
     private static final AppConfig INSTANCE = new AppConfig();
 
     private final MockDataService mockDataService = new MockDataService();
-    private final ApiClient apiClient = new ApiClient("http://localhost:8000/api");
-    private final CategoryService categoryService = new CategoryService(mockDataService);
-    private final ActivityService activityService = new ActivityService(mockDataService);
-    private final UserService userService = new UserService(mockDataService);
-    private final ChildService childService = new ChildService(mockDataService);
+    private final ApiClient apiClient = new ApiClient(
+            System.getProperty("artkids.api.baseUrl", "http://127.0.0.1:8000/api")
+    );
+    private final CategoryService categoryService = new AdminCategoryApiService(apiClient, mockDataService);
+    private final ActivityService activityService = new AdminActivityApiService(apiClient, mockDataService);
+    private final UserService userService = new AdminUserApiService(apiClient, mockDataService);
+    private final ChildService childService = new AdminChildApiService(apiClient, mockDataService);
     private final ReservationService reservationService =
-            new ReservationService(mockDataService, childService, activityService);
-    private final AuthService authService = new AuthService(mockDataService);
+            new AdminReservationApiService(apiClient, mockDataService, childService, activityService);
+    private final AuthService authService = new AuthApiService(apiClient, mockDataService);
 
     private User currentUser;
+    private String bearerToken;
+    private int tokenExpiresIn;
     private boolean initialized;
 
     private AppConfig() {
@@ -38,7 +48,6 @@ public final class AppConfig {
             return;
         }
         mockDataService.initialize();
-        activityService.refreshStatuses();
         initialized = true;
     }
 
@@ -82,7 +91,25 @@ public final class AppConfig {
         this.currentUser = currentUser;
     }
 
+    public String getBearerToken() {
+        return bearerToken;
+    }
+
+    public void setApiSession(String bearerToken, int tokenExpiresIn, User currentUser) {
+        this.bearerToken = bearerToken;
+        this.tokenExpiresIn = tokenExpiresIn;
+        this.currentUser = currentUser;
+        apiClient.setBearerToken(bearerToken);
+    }
+
+    public int getTokenExpiresIn() {
+        return tokenExpiresIn;
+    }
+
     public void clearSession() {
         currentUser = null;
+        bearerToken = null;
+        tokenExpiresIn = 0;
+        apiClient.clearBearerToken();
     }
 }

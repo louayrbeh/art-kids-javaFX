@@ -13,7 +13,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.artkids.controller.auth.LoginController"
-            prefWidth="1280.0" prefHeight="820.0" styleClass="page login-page">
+            prefWidth="1280.0" prefHeight="820.0" styleClass="page auth-page login-page">
     <left>
         <VBox spacing="20.0" prefWidth="560.0" styleClass="login-hero">
             <padding>
@@ -35,12 +35,12 @@
     </left>
     <center>
         <VBox alignment="CENTER" spacing="16.0">
-            <VBox spacing="18.0" maxWidth="420.0" styleClass="form-card login-card">
+            <VBox spacing="18.0" maxWidth="440.0" styleClass="form-card login-card">
                 <padding>
                     <Insets top="36.0" right="36.0" bottom="36.0" left="36.0"/>
                 </padding>
                 <Label text="Connexion" styleClass="page-title"/>
-                <Label text="Connectez-vous avec un compte parent ou administrateur." styleClass="page-subtitle" wrapText="true"/>
+                <Label text="Accedez a votre espace parent ou administrateur." styleClass="page-subtitle" wrapText="true"/>
 
                 <VBox spacing="8.0">
                     <Label text="Email" styleClass="form-label"/>
@@ -52,10 +52,11 @@
                     <PasswordField fx:id="passwordField" promptText="Votre mot de passe" onAction="#handleLogin"/>
                 </VBox>
 
-                <Label fx:id="errorLabel" textFill="#B14A4A" wrapText="true"/>
+                <Label fx:id="errorLabel" styleClass="error-text" wrapText="true"/>
 
                 <Button text="Se connecter" onAction="#handleLogin" maxWidth="Infinity" styleClass="primary-button"/>
                 <Button text="Creer un compte parent" onAction="#showRegister" maxWidth="Infinity" styleClass="secondary-button"/>
+                <Button text="Retour accueil" onAction="#showHome" maxWidth="Infinity" styleClass="ghost-button"/>
 
                 <HBox spacing="10.0">
                     <Button text="Compte admin" onAction="#fillAdminDemo" maxWidth="Infinity" styleClass="secondary-button" HBox.hgrow="ALWAYS"/>

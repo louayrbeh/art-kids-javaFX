@@ -1,0 +1,44 @@
+.home-page {
+    -fx-background-color: -art-bg;
+}
+
+.home-topbar {
+    -fx-background-color: rgba(255,255,255,0.96);
+    -fx-border-color: -art-border;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.home-brand {
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -art-text;
+}
+
+.home-hero {
+    -fx-background-color: linear-gradient(to bottom right, #FFFFFF, #EEF4FF);
+    -fx-background-radius: 24px;
+    -fx-border-radius: 24px;
+    -fx-border-color: rgba(37,99,235,0.12);
+    -fx-effect: dropshadow(gaussian, -art-shadow, 26, 0.18, 0, 10);
+}
+
+.home-hero-title {
+    -fx-font-size: 38px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -art-text;
+}
+
+.home-hero-text {
+    -fx-font-size: 15px;
+    -fx-text-fill: -art-muted;
+}
+
+.home-visual {
+    -fx-background-color: linear-gradient(to bottom right, -art-primary, -art-primary-dark);
+    -fx-background-radius: 22px;
+    -fx-padding: 26px;
+}
+
+.home-visual .label {
+    -fx-text-fill: white;
+}

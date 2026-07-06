@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
@@ -39,6 +40,18 @@
                     <padding>
                         <Insets top="28.0" right="28.0" bottom="28.0" left="28.0"/>
                     </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="topbar">
+                        <padding>
+                            <Insets top="14.0" right="18.0" bottom="14.0" left="18.0"/>
+                        </padding>
+                        <Label text="Back-Office" styleClass="topbar-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <TextField promptText="Rechercher..." prefWidth="260.0" styleClass="search-field"/>
+                        <Button text="!" styleClass="notification-button secondary-button"/>
+                        <HBox alignment="CENTER" spacing="8.0" styleClass="profile-chip">
+                            <Label text="Admin" styleClass="card-title"/>
+                        </HBox>
+                    </HBox>
                     <VBox spacing="6.0">
                         <Label text="Dashboard administrateur" styleClass="page-title"/>
                         <Label text="Pilotez le catalogue, les utilisateurs et les reservations depuis un espace centralise."

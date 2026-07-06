@@ -66,6 +66,11 @@ public class RegisterController {
         SceneManager.getInstance().showLogin();
     }
 
+    @FXML
+    private void backToHome() {
+        SceneManager.getInstance().showHome();
+    }
+
     private String requiredValue(String value, String message) {
         if (ValidationUtils.isBlank(value)) {
             throw new IllegalArgumentException(message);

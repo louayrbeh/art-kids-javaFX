@@ -1,3 +1,25 @@
 .admin-page {
-    -fx-background-color: linear-gradient(to bottom right, rgba(244,235,219,1), rgba(255,255,255,1));
+    -fx-background-color: -art-bg;
+}
+
+.admin-page .page-content {
+    -fx-background-color: transparent;
+}
+
+.admin-page .sidebar .form-label {
+    -fx-text-fill: rgba(255,255,255,0.62);
+}
+
+.admin-page .sidebar .danger-button {
+    -fx-background-color: rgba(239,68,68,0.16);
+    -fx-border-color: rgba(239,68,68,0.32);
+    -fx-text-fill: white;
+}
+
+.admin-page .sidebar .danger-button:hover {
+    -fx-background-color: -art-danger;
+}
+
+.admin-page .form-card {
+    -fx-background-color: -art-white;
 }

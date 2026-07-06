@@ -16,6 +16,7 @@ public class Activity {
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private int capaciteMax;
+    private int placesDisponibles = -1;
     private int ageMin;
     private int ageMax;
     private BigDecimal prix;
@@ -112,6 +113,14 @@ public class Activity {
 
     public void setCapaciteMax(int capaciteMax) {
         this.capaciteMax = capaciteMax;
+    }
+
+    public int getPlacesDisponibles() {
+        return placesDisponibles;
+    }
+
+    public void setPlacesDisponibles(int placesDisponibles) {
+        this.placesDisponibles = placesDisponibles;
     }
 
     public int getAgeMin() {

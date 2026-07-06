@@ -1,10 +1,13 @@
 package com.artkids.util;
 
 import com.artkids.config.AppConfig;
+import com.artkids.service.ApiException;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +26,11 @@ public final class SceneManager {
 
     public void initialize(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    public void showHome() {
+        AppConfig.getInstance().clearSession();
+        switchScene("/com/artkids/view/auth/home.fxml", "ArtKids - Accueil", null);
     }
 
     public void showLogin() {
@@ -131,8 +139,16 @@ public final class SceneManager {
             primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
+            playSceneTransition(root);
         } catch (IOException exception) {
+            Throwable cause = exception.getCause();
+            if (cause instanceof ApiException apiException) {
+                AlertUtils.showError(apiException.getMessage());
+            }
             throw new IllegalStateException("Impossible de charger la vue : " + resourcePath, exception);
+        } catch (ApiException exception) {
+            AlertUtils.showError(exception.getMessage());
+            throw exception;
         }
     }
 
@@ -143,8 +159,18 @@ public final class SceneManager {
                 resourceToExternal("/com/artkids/css/forms.css"),
                 resourceToExternal("/com/artkids/css/tables.css"),
                 resourceToExternal("/com/artkids/css/frontoffice.css"),
-                resourceToExternal("/com/artkids/css/backoffice.css")
+                resourceToExternal("/com/artkids/css/backoffice.css"),
+                resourceToExternal("/com/artkids/css/home.css"),
+                resourceToExternal("/com/artkids/css/animations.css")
         );
+    }
+
+    private void playSceneTransition(Parent root) {
+        root.setOpacity(0);
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(180), root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
     }
 
     private String resourceToExternal(String path) {

@@ -3,6 +3,7 @@ package com.artkids.util;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import java.net.URL;
 import java.util.Optional;
 
 public final class AlertUtils {
@@ -26,6 +27,7 @@ public final class AlertUtils {
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        styleAlert(alert);
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
     }
@@ -35,6 +37,19 @@ public final class AlertUtils {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        styleAlert(alert);
         alert.showAndWait();
+    }
+
+    private static void styleAlert(Alert alert) {
+        URL theme = AlertUtils.class.getResource("/com/artkids/css/theme.css");
+        URL components = AlertUtils.class.getResource("/com/artkids/css/components.css");
+        if (theme != null) {
+            alert.getDialogPane().getStylesheets().add(theme.toExternalForm());
+        }
+        if (components != null) {
+            alert.getDialogPane().getStylesheets().add(components.toExternalForm());
+        }
+        alert.getDialogPane().getStyleClass().add("app-dialog");
     }
 }

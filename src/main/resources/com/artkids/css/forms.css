@@ -1,41 +1,86 @@
+.form-card {
+    -fx-padding: 28px;
+}
+
+.form-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -art-text;
+}
+
 .form-label {
-    -fx-font-size: 13px;
-    -fx-font-weight: 700;
-    -fx-text-fill: -art-medium;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -art-muted;
 }
 
 .text-field,
 .password-field,
 .combo-box,
 .date-picker,
-.text-area {
-    -fx-background-color: white;
+.text-area,
+.input {
+    -fx-background-color: -art-white;
     -fx-background-radius: 12px;
     -fx-border-radius: 12px;
-    -fx-border-color: rgba(44,74,82,0.16);
+    -fx-border-color: -art-border;
     -fx-border-width: 1px;
-    -fx-padding: 8 12 8 12;
+    -fx-padding: 9 12 9 12;
     -fx-font-size: 13px;
+    -fx-text-fill: -art-text;
+    -fx-prompt-text-fill: rgba(100,116,139,0.72);
+}
+
+.combo-box,
+.date-picker {
+    -fx-padding: 0;
+}
+
+.combo-box .arrow-button,
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
 }
 
 .text-field:focused,
 .password-field:focused,
 .combo-box:focused,
 .date-picker:focused,
-.text-area:focused {
-    -fx-border-color: -art-medium;
-    -fx-effect: dropshadow(gaussian, rgba(83,112,114,0.16), 8, 0.15, 0, 2);
+.text-area:focused,
+.input:focused {
+    -fx-border-color: -art-primary;
+    -fx-effect: dropshadow(gaussian, -art-focus, 12, 0.22, 0, 0);
 }
 
 .text-area .content {
-    -fx-background-color: white;
+    -fx-background-color: -art-white;
     -fx-background-radius: 12px;
 }
 
 .combo-box .list-cell {
-    -fx-text-fill: -art-dark;
+    -fx-text-fill: -art-text;
 }
 
 .check-box {
-    -fx-text-fill: -art-dark;
+    -fx-text-fill: -art-text;
+}
+
+.check-box .box {
+    -fx-background-color: -art-white;
+    -fx-border-color: -art-border;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -art-primary;
+    -fx-border-color: -art-primary;
+}
+
+.form-actions {
+    -fx-spacing: 12px;
+    -fx-alignment: CENTER_RIGHT;
 }
